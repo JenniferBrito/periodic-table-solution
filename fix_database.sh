@@ -35,5 +35,8 @@
 # ALTER_TYPE_AM=$($PSQL "ALTER TABLE properties ALTER COLUMN atomic_mass TYPE DECIMAL;")
 # echo "$ALTER_TYPE_AM"
 
-REMOVE_TRAILING_ZEROS=$($PSQL "UPDATE properties SET atomic_mass=TRIM(TRAILING '0' FROM CAST(atomic_mass AS TEXT))::DECIMAL;")
-echo "$REMOVE_TRAILING_ZEROS"
+# REMOVE_TRAILING_ZEROS=$($PSQL "UPDATE properties SET atomic_mass=TRIM(TRAILING '0' FROM CAST(atomic_mass AS TEXT))::DECIMAL;")
+# echo "$REMOVE_TRAILING_ZEROS"
+
+ADD_FK_ELEMENTS=$($PSQL "ALTER TABLE properties ADD FOREIGN KEY (atomic_number) REFERENCES elements(atomic_number);")
+echo "$ADD_FK_ELEMENTS"
