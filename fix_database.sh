@@ -1,6 +1,6 @@
 # #! /bin/bash
  
-#  PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
+PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
  
 #  FIX_WEIGHT=$($PSQL "ALTER TABLE properties RENAME COLUMN weight TO atomic_mass;")
 #  echo "$FIX_WEIGHT"
@@ -41,5 +41,7 @@
 # ADD_FK_ELEMENTS=$($PSQL "ALTER TABLE properties ADD FOREIGN KEY (atomic_number) REFERENCES elements(atomic_number);")
 # echo "$ADD_FK_ELEMENTS"
 
+ADD_FK_COLUMN=$($PSQL "ALTER TABLE properties ADD COLUMN type_id INT;")
+echo "$ADD_FK_COLUMN"
 ADD_FK_PROPERTIES=$($PSQL "ALTER TABLE properties ADD FOREIGN KEY (type_id) REFERENCES types(type_id);")
 echo "$ADD_FK_PROPERTIES"
