@@ -41,7 +41,8 @@ PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
 # ADD_FK_ELEMENTS=$($PSQL "ALTER TABLE properties ADD FOREIGN KEY (atomic_number) REFERENCES elements(atomic_number);")
 # echo "$ADD_FK_ELEMENTS"
 
-ADD_FK_COLUMN=$($PSQL "ALTER TABLE properties ADD COLUMN type_id INT;")
+DROP_COLUMN=$($PSQL "ALTER TABLE properties DROP COLUMN type_id;")
+ADD_FK_COLUMN=$($PSQL "ALTER TABLE properties ADD COLUMN type_id INT NOT NULL;")
 echo "$ADD_FK_COLUMN"
 ADD_FK_PROPERTIES=$($PSQL "ALTER TABLE properties ADD FOREIGN KEY (type_id) REFERENCES types(type_id);")
 echo "$ADD_FK_PROPERTIES"
